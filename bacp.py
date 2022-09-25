@@ -8,13 +8,16 @@ import csv
 import os.path
 from datetime import datetime
 import re
+from config import ini_read
 
 chrome_options = webdriver.ChromeOptions()
 chrome_options.add_argument('headless')
+chrome_options.add_argument('log-level=3')
 chrome_options.add_argument('window-size=1920x1080')
 chrome_options.add_argument("disable-gpu")
 chrome_options.add_argument("user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.97 Safari/537.36")
-driver = webdriver.Chrome('chromedriver', options=chrome_options)
+driver_path = ini_read()
+driver = webdriver.Chrome(driver_path, options=chrome_options)
 MAIN_URL = 'https://www.bacp.co.uk/search/Therapists?q=mind&skip='
 date = datetime.now().strftime("%Y%m%d-%H%M%S")
 CSV_FILE = f'bacp_output_{date}'

@@ -13,6 +13,7 @@
 
 from lxml import html 
 import requests
+import json
 
 def save_info(nombre,extension,data):
     with open(f'{nombre}.{extension}', 'w', encoding='utf-8') as f:
@@ -60,5 +61,5 @@ while True:
 		print('Proceso terminado...')	
 		break
 
-save_info(nombre='resultados',extension='json',data=str(list_person))
+save_info(nombre='resultados',extension='json',data=json.dumps(list_person))
 

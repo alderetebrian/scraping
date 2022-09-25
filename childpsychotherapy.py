@@ -21,6 +21,10 @@ headers = {
 	'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36'
 }
 
+def save_info(nombre,extension,data):
+    with open(f'{nombre}.{extension}', 'w', encoding='utf-8') as f:
+        f.write(data)
+
 def get_profiles():
 	page_number = 0
 	list_profile = []
@@ -63,4 +67,4 @@ def get_all(list_profile):
 
 lista = get_profiles()
 obtenido = get_all(lista)
-print(obtenido)
+save_info(nombre='childpsychotherapy_resultados',extension='json',data=json.dumps(obtenido))
