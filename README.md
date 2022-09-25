@@ -16,7 +16,7 @@ Also, if an error arises, the scraps say which page they stayed on in order to r
 To deploy this project run
 
 ```bash
-  pip install requirements.txt
+  pip install -r requirements.txt
 ```
 
 
