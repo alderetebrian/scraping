@@ -15,6 +15,8 @@ from lxml import html
 import requests
 import json
 
+from json_db import json_db
+
 
 def save_info(nombre, extension, data):
     with open(f'{nombre}.{extension}', 'w', encoding='utf-8') as f:
@@ -60,8 +62,10 @@ while True:
                     'email': email,
                     'url': URL
             }
-            list_person.append(data)
+            #list_person.append(data)
+
+            json_db(data=data)
     print(f'Perfiles con emails: {str(count)}')
     page_number = page_number + 1
 
-save_info(nombre='international_resultados', extension='json',data=json.dumps(list_person))
+#save_info(nombre='international_resultados', extension='json',data=json.dumps(list_person))

@@ -9,6 +9,7 @@ import os.path
 from datetime import datetime
 import re
 from config import ini_read
+from json_db import json_db
 
 chrome_options = webdriver.ChromeOptions()
 chrome_options.add_argument('headless')
@@ -150,7 +151,15 @@ if __name__ == '__main__':
                         print(link)
                         print(email)
                         print("===========[EXTRACT]======================")
-                        make_csv(name, email, link)
+                        
+                        data = {
+                            'email': email,
+                            'name': name,
+                            'url': link
+                        }
+
+                        json_db(data=data)
+                        #make_csv(name, email, link)
                 except:
                     pass
 

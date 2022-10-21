@@ -14,6 +14,7 @@
 from lxml import html
 import requests
 import json
+from json_db import json_db
 
 
 def save_info(nombre, extension, data):
@@ -67,10 +68,12 @@ while True:
                     'email': email,
                     'url': profile
                 }
-                list_person.append(data)
+
+                json_db(data=data)
+                #list_person.append(data)
         except:
             print(f'Rompio en la pagina: {profile}')
     print(f'Perfiles con emails: {str(count)}')
     page_number = page_number + 1
 
-save_info(nombre='nrpc_resultados', extension='json', data=json.dumps(list_person))
+#save_info(nombre='nrpc_resultados', extension='json', data=json.dumps(list_person))

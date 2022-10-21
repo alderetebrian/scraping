@@ -15,6 +15,7 @@ from lxml import html
 import requests
 import re
 import json
+from json_db import json_db
 
 headers = {
 	'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
@@ -62,9 +63,9 @@ def get_all(list_profile):
 				'url': url
 			}
 
-			list_person.append(data)
+			json_db(data)
 	return list_person
 
 lista = get_profiles()
 obtenido = get_all(lista)
-save_info(nombre='childpsychotherapy_resultados',extension='json',data=json.dumps(obtenido))
+#save_info(nombre='childpsychotherapy_resultados',extension='json',data=json.dumps(obtenido))

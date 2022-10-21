@@ -7,6 +7,7 @@ from time import sleep
 import csv
 import os.path
 from datetime import datetime
+from json_db import json_db
 
 chrome_options = webdriver.ChromeOptions()
 #chrome_options.add_argument('headless')
@@ -38,7 +39,15 @@ def get_information(url):
             email = email.split('mailto:')[1]
             #email = email.split('mailto:')[1]
             print(name, email, url)
-            make_csv(name, email, url)
+            #make_csv(name, email, url)
+            data = {
+                'email': email,
+                'name': name,
+                'url': url
+            }
+
+            json_db(data=data)
+
 
         except Exception as e:
             # print(e)
