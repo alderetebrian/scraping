@@ -126,7 +126,7 @@ if __name__ == '__main__':
     #count = 12340
     #count = 14350
     #count = 14480
-    count = 0
+    count = 850
     while(True):
         #next = next_page(MAIN_URL + str(count))
         break_web = break_page(MAIN_URL + str(count))
@@ -135,33 +135,34 @@ if __name__ == '__main__':
         print("===========[PAGE]======================")
         #if next == True:
         if break_web == False:
-            profiles = []
-            count = count + 10
-            profiles.append(get_profile(MAIN_URL + str(count)))
-            print("===========[PROFILES]======================")
-            for profile in profiles[0]:
-                try:
-                    info = get_url(profile)
-                    name = info['name']
-                    link = info['link']
-                    email = get_information(link)
-                    if email != None:
-                        print("===========[EXTRACT]======================")
-                        print(name)
-                        print(link)
-                        print(email)
-                        print("===========[EXTRACT]======================")
-                        
-                        data = {
-                            'email': email,
-                            'name': name,
-                            'url': link
-                        }
+            try:
+                profiles = []
+                count = count + 10
+                profiles.append(get_profile(MAIN_URL + str(count)))
+                print("===========[PROFILES]======================")
+                for profile in profiles[0]:
+                    
+                        info = get_url(profile)
+                        name = info['name']
+                        link = info['link']
+                        email = get_information(link)
+                        if email != None:
+                            print("===========[EXTRACT]======================")
+                            print(name)
+                            print(link)
+                            print(email)
+                            print("===========[EXTRACT]======================")
+                            
+                            data = {
+                                'email': email,
+                                'name': name,
+                                'url': link
+                            }
 
-                        json_db(data=data)
-                        #make_csv(name, email, link)
-                except:
-                    pass
+                            json_db(data=data)
+                            #make_csv(name, email, link)
+            except:
+                pass
 
             print("===========[PROFILES]======================")
         else:
