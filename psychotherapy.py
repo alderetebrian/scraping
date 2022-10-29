@@ -111,6 +111,6 @@ if __name__ == '__main__':
             print("=============[FINISH]====================")
             break
 
-    driver.get_screenshot_as_file('Page.png')
+    #driver.get_screenshot_as_file('Page.png')
     driver.quit()
     #print(person_information)

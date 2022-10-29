@@ -52,6 +52,17 @@ def get_url(url):
     except:
         pass
 
+def get_email(url):
+    sub_page = ['/contact', '/about']
+    for page in sub_page:
+        pagina = url + page
+        response = get_information(pagina)
+        if response:
+            print("Encontrado en la pagina:")
+            print(pagina)
+            print(response)
+            break
+
 def get_information(url):
     try:
         driver.get(url)
@@ -59,21 +70,6 @@ def get_information(url):
         text = driver.find_elements(By.TAG_NAME, "body")[0].get_attribute("innerText")
         email = re.search(email_regex, text).group(0)
         return email
-        #print(text)
-        # email_xpath = driver.find_elements(By.XPATH, '//*[text() = "Email Therapist"]')
-        # email_link = email_xpath[0].get_attribute("href")
-        # email = email_link.split('mailto:')[1]
-        #
-        # name_xpath = driver.find_elements(By.XPATH, '//h1')
-        # name = name_xpath[0].text
-        #
-        # json = {
-        #     'name': name,
-        #     'email': email,
-        #     'url': url
-        # }
-        #
-        # return json
     except:
         pass
 
@@ -113,20 +109,7 @@ def make_csv(name,email,url):
         csvFile.close()
 
 if __name__ == '__main__':
-    #count = 0
-    #count = 1950
-    #count = 4840
-    #count = 5180
-    #count = 5570
-    #count = 5630
-    #count = 5660
-    #count = 7440
-    #count = 8240
-    #count = 10880
-    #count = 12340
-    #count = 14350
-    #count = 14480
-    count = 850
+    count = 0
     while(True):
         #next = next_page(MAIN_URL + str(count))
         break_web = break_page(MAIN_URL + str(count))
@@ -145,7 +128,7 @@ if __name__ == '__main__':
                         info = get_url(profile)
                         name = info['name']
                         link = info['link']
-                        email = get_information(link)
+                        email = get_email(link)
                         if email != None:
                             print("===========[EXTRACT]======================")
                             print(name)
