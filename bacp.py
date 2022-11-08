@@ -53,15 +53,17 @@ def get_url(url):
         pass
 
 def get_email(url):
-    sub_page = ['/contact', '/about']
+    sub_page = ['','/contact', '/about', '/about-me']
     for page in sub_page:
+        if url[-1] == '/':
+            url = url[:-1]
         pagina = url + page
         response = get_information(pagina)
         if response:
             print("Encontrado en la pagina:")
             print(pagina)
             print(response)
-            break
+            return response
 
 def get_information(url):
     try:
