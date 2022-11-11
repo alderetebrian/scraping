@@ -9,8 +9,8 @@ def json_db(data:dict):
     try:
         conn = sqlite3.connect('test.db')
         #print("Opened database successfully")
-        conn.execute(f"INSERT INTO scrap_contenido (email,name,url) \
-            VALUES ('{email}', '{name}', '{url}')")
+        conn.execute(f"INSERT INTO scrap_contenido (email,name,url, date) \
+            VALUES ('{email}', '{name}', '{url}', date())")
         print('Datos Ingresados:')
         print(f'Email: {email}')
         print(f'Name: {name}')
