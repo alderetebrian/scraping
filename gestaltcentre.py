@@ -11,7 +11,7 @@ from datetime import datetime
 from json_db import json_db
 
 chrome_options = webdriver.ChromeOptions()
-#chrome_options.add_argument('headless')
+chrome_options.add_argument('headless')
 chrome_options.add_argument('window-size=1920x1080')
 chrome_options.add_argument("disable-gpu")
 chrome_options.add_argument(
