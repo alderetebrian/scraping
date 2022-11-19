@@ -34,11 +34,17 @@ def save_info(nombre, extension, data):
 def get_profiles():
     page_number = 1
     list_profile = []
+    response = requests.get('https://www.acto.org.uk/directories/acto-therapists-directory/', headers=headers)
+    tree = html.fromstring(response.content)
+    nonce = tree.xpath('//script[@id="um_scripts-js-extra"]/text()')
+    regex = re.search(r'"nonce":"(.*?)"', nonce[0])
+    nonce = regex.group(1)
     while True:
-        payload = f"directory_id=d3bb7&page={page_number}&search=&sorting=&gmt_offset=-3&post_refferer=12970&nonce=ae56239154&action=um_get_members"
+        payload = f"directory_id=d3bb7&page={page_number}&search=&sorting=&gmt_offset=-3&post_refferer=12970&nonce={nonce}&action=um_get_members"
         page = requests.post(
             'https://www.acto.org.uk/wp-admin/admin-ajax.php', data=payload, headers=headers)
         content = page.json()
+        print(content)
         data = content['data']['pagination']
         current_page = data['current_page']
         total_pages = data['total_pages']
